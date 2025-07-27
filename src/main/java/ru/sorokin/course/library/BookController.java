@@ -1,5 +1,6 @@
 package ru.sorokin.course.library;
 
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -26,7 +27,7 @@ public class BookController {
     }
 
     @PostMapping("/books")
-    public ResponseEntity<Book> createBook(@RequestBody Book book) {
+    public ResponseEntity<Book> createBook(@RequestBody @Valid Book book) {
         log.info("Get request for create book: book = {}", book);
         Book createdBook = bookService.createBook(book);
 
@@ -50,7 +51,7 @@ public class BookController {
     }
 
     @PutMapping("books/{id}")
-    public Book updateBook(@PathVariable long id, @RequestBody Book book) {
+    public Book updateBook(@PathVariable long id, @RequestBody @Valid Book book) {
         log.info("Get request for update book: id = {}, book to upadte = {}", id, book);
         return bookService.updateBook(id, book);
     }
