@@ -5,8 +5,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -52,7 +54,7 @@ public class BookController {
 
     @PutMapping("books/{id}")
     public Book updateBook(@PathVariable long id, @RequestBody @Valid Book book) {
-        log.info("Get request for update book: id = {}, book to upadte = {}", id, book);
+        log.info("Get request for update book: id = {}, book to update = {}", id, book);
         return bookService.updateBook(id, book);
     }
 }

@@ -1,13 +1,8 @@
 package ru.sorokin.course.library;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class BookService {
@@ -44,19 +39,19 @@ public class BookService {
 
     public Book findById(long id) {
         return Optional.ofNullable(books.get(id))
-                .orElseThrow(() -> new RuntimeException("No found book by id= %s".formatted(id)));
+                .orElseThrow(() -> new NoSuchElementException("No found book by id= %s".formatted(id)));
     }
 
     public void deleteBook(long id) {
         Book remove = books.remove(id);
         if (remove == null) {
-            throw new RuntimeException("No found book by id= %s".formatted(id));
+            throw new NoSuchElementException("No found book by id= %s".formatted(id));
         }
     }
 
     public Book updateBook(long id, Book book) {
         if (books.get(id) == null) {
-            throw new RuntimeException("No found book by id= %s".formatted(book.id()));
+            throw new NoSuchElementException("No found book by id= %s".formatted(id));
         }
         Book updatedBook = new Book(id,
                 book.name(),
