@@ -1,4 +1,4 @@
-package ru.sorokin.course.library;
+package ru.sorokin.course.library.web;
 
 import java.time.LocalDateTime;
 

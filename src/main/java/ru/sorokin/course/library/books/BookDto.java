@@ -1,4 +1,4 @@
-package ru.sorokin.course.library;
+package ru.sorokin.course.library.books;
 
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.*;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public record Book(
+public record BookDto(
 
         @Null
         Long id,
@@ -15,9 +15,7 @@ public record Book(
         @Size(max = 50)
         String name,
 
-        @NotBlank
-        @Size(max = 50)
-        String author,
+        Long authorId,
 
         @JsonProperty("pubYear")
         @Min(0)
